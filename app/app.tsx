@@ -19,7 +19,7 @@ export const App = () => {
       
       const Item = ({ title }: ItemProps) => (
         <View style={styles.item}>
-          <Text style={styles.title}>{title.toLocaleDateString("en-HK")}</Text>
+          <Text style={styles.title}>{title.toLocaleDateString("en-HK", {day:'numeric'})}</Text>
         </View>
       );
       
