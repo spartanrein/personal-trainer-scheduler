@@ -9,25 +9,34 @@ import {
 } from 'react-native';
 
 export const App = () => {
-    type ItemProps = {title:string}
-
-    const Item = ({title}: ItemProps) => (
+    interface DateItem {
+        date: Date;
+      }
+      
+      type ItemProps = {
+        title: Date;
+      };
+      
+      const Item = ({ title }: ItemProps) => (
         <View style={styles.item}>
-          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.title}>{title.toLocaleDateString("en-HK")}</Text>
         </View>
-    );
-    
-    return (
+      );
+      
+      const convertedDates: DateItem[] = dates.map((item) => ({
+        date: new Date(item.dateString), // Convert strings to Date objects
+      }));
+      
+      return (
         <View>
-            <Text>Reiner</Text>
-            <FlatList
-                horizontal
-                data={dates}
-                renderItem={({item}) => <Item title={item.date}/>}
-                showsHorizontalScrollIndicator={false}
-            />
+          <FlatList
+            horizontal
+            data={convertedDates}
+            renderItem={({ item }) => <Item title={item.date} />}
+            showsHorizontalScrollIndicator={false}
+          />
         </View>
-    )
+      );
 }
 
 const styles = StyleSheet.create({
@@ -49,31 +58,31 @@ const styles = StyleSheet.create({
 const dates = [
     {
         id: 1,
-        date: '2022-09-01 18:00:00.000'
+        dateString: '2022-09-01 18:00:00.000'
     },
     {
         id: 2,
-        date: '2022-09-02 18:00:00.000'
+        dateString: '2022-09-02 18:00:00.000'
     },
     {
         id: 3,
-        date: '2022-09-03 18:00:00.000'
+        dateString: '2022-09-03 18:00:00.000'
     },
     {
         id: 4,
-        date: '2022-09-04 18:00:00.000'
+        dateString: '2022-09-04 18:00:00.000'
     },
     {
         id: 5,
-        date: '2022-09-05 18:00:00.000'
+        dateString: '2022-09-05 18:00:00.000'
     },
     {
         id: 6,
-        date: '2022-09-06 18:00:00.000'
+        dateString: '2022-09-06 18:00:00.000'
     },
     {
         id: 7,
-        date: '2022-09-07 18:00:00.000'
+        dateString: '2022-09-07 18:00:00.000'
     },
 ]
 
